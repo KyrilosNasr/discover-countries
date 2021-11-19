@@ -1,0 +1,46 @@
+import { CountryName } from '../../../Shared/Interfaces/countryName';
+import { Translation } from "../../../Shared/Interfaces/translation";
+import { currencies } from '../../../Shared/Interfaces/currency';
+import { Languages } from '../../../Shared/Interfaces/language';
+import { Idd } from "../../../Shared/Interfaces/idd";
+import { Demonyms } from "../../../Shared/Interfaces/demonyms";
+import { Maps } from "../../../Shared/Interfaces/Maps";
+import { Car } from "../../../Shared/Interfaces/Car";
+import { CoatOfArms } from "../../../Shared/Interfaces/CoatOfArms";
+import { CapitalInfo } from "../../../Shared/Interfaces/CapitalInfo";
+
+export interface Country {
+    name: CountryName;
+    tld: string[];
+    cca2: string;
+    ccn3: string;
+    cca3: string;
+    cioc: string;
+    independent: boolean;
+    status: string;
+    unMember: boolean;
+    currencies: currencies[];
+    idd: Idd;
+    capital: string[];
+    altSpellings: string[];
+    region: string;
+    subregion: string;
+    languages: Languages[];
+    translations: { [key: string]: Translation };
+    latlng: number[];
+    landlocked: boolean;
+    borders: string[];
+    area: number;
+    demonyms: Demonyms;
+    flag: string;
+    maps: Maps;
+    population: number;
+    fifa: string;
+    car: Car;
+    timezones: string[];
+    continents: string[];
+    flags: CoatOfArms;
+    coatOfArms: CoatOfArms;
+    startOfWeek: string;
+    capitalInfo: CapitalInfo;
+}

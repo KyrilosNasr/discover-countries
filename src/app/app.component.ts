@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Theme } from './Enums/theme.enum';
+import { Theme } from './Shared/model/theme.enum';
 
-import { ThemeService } from './services/theme.service';
+import { ThemeService } from './Shared/services/theme.service';
 
 @Component({
   selector: 'app-root',
@@ -18,6 +18,6 @@ export class AppComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.theme = this.themeService.mode$;
+    this.theme = this.themeService._mode$;
   }
 }

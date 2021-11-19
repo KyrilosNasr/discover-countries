@@ -5,23 +5,18 @@ import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './pages/home/home.component';
-import { DetailComponent } from './pages/detail/detail.component';
-import { CountryCardComponent } from './components/country-card/country-card.component';
-import { DropdownComponent } from './components/dropdown/dropdown.component';
-import { NavbarComponent } from './components/navbar/navbar.component';
+import { DetailComponent } from './feature-modules/countries/components/country-card/detail/detail.component';
+import { NavbarComponent } from './Shared/components/navbar/navbar.component';
+import { FeaturesModule } from './feature-modules/modules/features.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    HomeComponent,
     DetailComponent,
-    CountryCardComponent,
-    DropdownComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
-  providers: [],
+  providers: [FeaturesModule],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

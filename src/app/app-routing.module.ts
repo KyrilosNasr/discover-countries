@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { HomeComponent } from './pages/home/home.component';
-import { DetailComponent } from './pages/detail/detail.component';
+import { DetailComponent } from './feature-modules/countries/components/country-card/detail/detail.component';
+import { HomeComponent } from './feature-modules/home/components/home/home.component';
 
 const routes: Routes = [
   {
@@ -13,6 +13,7 @@ const routes: Routes = [
     path: ':country',
     component: DetailComponent,
   },
+  { path: 'features', loadChildren: () => import('./feature-modules/modules/features.module').then(m => m.FeaturesModule) },
 ];
 
 @NgModule({
