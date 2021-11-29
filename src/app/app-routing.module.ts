@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { DetailComponent } from './feature-modules/countries/components/country-card/detail/detail.component';
+import { DetailComponent } from './feature-modules/countries/components/detail/detail.component';
 import { HomeComponent } from './feature-modules/home/components/home/home.component';
 
 const routes: Routes = [

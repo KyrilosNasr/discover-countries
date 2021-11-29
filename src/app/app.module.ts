@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { DetailComponent } from './feature-modules/countries/components/country-card/detail/detail.component';
+import { DetailComponent } from './feature-modules/countries/components/detail/detail.component';
 import { NavbarComponent } from './Shared/components/navbar/navbar.component';
 import { FeaturesModule } from './feature-modules/modules/features.module';
 

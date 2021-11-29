@@ -19,7 +19,7 @@
     flex-direction: row;
     justify-content: space-between;
   }
-  app-dropdown {
+  app-filter-dropdown {
     width: 60%;
     @media (min-width: 376px) {
       width: 25%;
@@ -57,10 +57,10 @@
 
 :host-context(.dark) {
   .search-filter {
-    background-color: var(--d-element);
-    color: var(--d-text);
+    background-color: var(--dark-element);
+    color: var(--dark-text);
     input::placeholder {
-      color: var(--d-text);
+      color: var(--dark-text);
     }
   }
 }

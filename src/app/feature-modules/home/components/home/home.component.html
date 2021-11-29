@@ -1,13 +1,24 @@
 <div class="country-filters">
-  <form class="search-filter shadow" [formGroup]="searchInput">
+  <div class="search-filter shadow">
     <span class="fa fa-search"></span>
-    <input type="text" placeholder="Search for a country..." name="searchFilter" id="searchFilter"
-      formControlName="searchFilter" />
-  </form>
-  <app-filter-dropdown placeholder="Filter by Region" [values]="regionOptions" [(value)]="regionFilter">
+    <input
+      class="search-filter"
+      type="text"
+      placeholder="Search for a country..."
+      [(ngModel)]="searchInput"
+    />
+  </div>
+  <app-filter-dropdown
+    placeholder="Filter by Region"
+    [regions]="regionOptions"
+    (valueChanged)="filter($event)"
+  >
   </app-filter-dropdown>
 </div>
 
 <div class="country-cards">
-  <app-country-card *ngFor="let country of countries" [country]="country"></app-country-card>
+  <app-country-card
+    *ngFor="let country of countriesListFiltered"
+    [country]="country"
+  ></app-country-card>
 </div>

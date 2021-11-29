@@ -8,17 +8,17 @@ import { Country } from 'src/app/feature-modules/countries/models/country';
   providedIn: 'root'
 })
 export class CountryDetailsService {
-  private _data = 'http://api.countrylayer.com/v2/all?access_key=b6aa5d578de0e033e16c53ac06db960d';
+  private _data = 'https://restcountries.com/v3.1/';
   constructor(private http: HttpClient) { }
 
-  public getCountryByName(name: string): Observable<Country> {
+  public getCountryByName(name: string) {
     return this.http
-      .get<Country[]>(`$/name/${this._data}`)
+      .get<Country[]>(`${this._data}/name/${name}`)
       .pipe(map(([res]) => res));
   }
 
   public getCountriesByCodes(codes: string[]): Observable<Country[]> {
-    console.log(`${this._data}/alhpa?codes=${codes.join(';')}`);
+    console.log(`${this._data}alpha?codes=${codes.join(';')}`);
     return this.http.get<Country[]>(
       `${this._data}/alpha?codes=${codes.join(';')}`
     );

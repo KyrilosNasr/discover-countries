@@ -4,19 +4,19 @@
     Back
   </button>
   <div class="country-layout">
-    <img [src]="country.flag" />
+    <img [src]="country.flags.png" />
     <div class="country-detail">
-      <h3>{{ country.name }}</h3>
+      <h3>{{ country.name.common }}</h3>
 
       <div class="country-info">
         <div class="country-section">
-          <p>
+          <p *ngIf="country.name.nativeName | keyvalue">
             <strong>Native Name:</strong>
-            {{ country.name }}
+            {{ country.name.common }}
           </p>
           <p>
             <strong>Population:</strong>
-            {{ country.population | number: '1.0' }}
+            {{ country.population | number: "1.0" }}
           </p>
           <p>
             <strong>Region:</strong>
@@ -37,22 +37,26 @@
             <strong>Top Level Domain:</strong>
             {{ country.car.signs }}
           </p>
-          <p>
+          <p *ngFor="let c of country.currencies | keyvalue">
             <strong>Currencies:</strong>
-            {{ displayCurrencies(country.currencies) }}
+            {{ c.key }}
           </p>
-          <p>
-            <strong>Languages:</strong>
-            {{ displayLanguages(country.languages) }}
+          <p *ngFor="let language of country.languages | keyvalue">
+            <strong>Language:</strong>
+            {{ language.value }} - {{ language.key }}
           </p>
         </div>
       </div>
       <div class="border-countries">
         <p><strong>Border Countries:</strong></p>
-        <div *ngIf="borderCountries$ | async; let borderCountries" class="border-countries-buttons">
-          <div *ngFor="let borderCountry of borderCountries" class="button shadow"
-            [routerLink]="'/' + borderCountry.name">
-            {{ borderCountry.name }}
+        <div
+          *ngIf="borderCountries$ | async; let border"
+          class="border-countries-buttons"
+        >
+          <div *ngFor="let borderCountry of border" class="button shadow">
+            <div>
+              {{ borderCountry.borders }}
+            </div>
           </div>
         </div>
       </div>
