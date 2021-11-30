@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { DetailComponent } from './feature-modules/countries/components/detail/detail.component';
 import { NavbarComponent } from './Shared/components/navbar/navbar.component';
 import { FeaturesModule } from './feature-modules/modules/features.module';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,13 @@ import { FeaturesModule } from './feature-modules/modules/features.module';
     NavbarComponent,
     DetailComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    Ng2SearchPipeModule,
+    FormsModule
+  ],
   providers: [FeaturesModule],
   bootstrap: [AppComponent],
 })
