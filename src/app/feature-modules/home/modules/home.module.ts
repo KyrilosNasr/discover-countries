@@ -8,12 +8,7 @@ import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [HomeComponent, FilterDropdownComponent, CountryCardComponent],
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    FormsModule,
-    RouterModule
-  ],
-  exports: [HomeComponent]
+  imports: [CommonModule, ReactiveFormsModule, FormsModule, RouterModule],
+  exports: [HomeComponent],
 })
-export class HomeModule { }
+export class HomeModule {}

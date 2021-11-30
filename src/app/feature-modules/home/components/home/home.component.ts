@@ -2,7 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { Country } from 'src/app/feature-modules/countries/models/country';
 import { AllCountriesService } from '../../services/all-countries.service';
 
-const REGION_OPTIONS = ['Africa', 'Americas', 'Asia', 'Europe', 'Oceania'];
+const REGION_OPTIONS = [
+  'All',
+  'Africa',
+  'Americas',
+  'Asia',
+  'Europe',
+  'Oceania',
+];
 
 @Component({
   selector: 'app-home',
@@ -11,34 +18,55 @@ const REGION_OPTIONS = ['Africa', 'Americas', 'Asia', 'Europe', 'Oceania'];
 })
 export class HomeComponent implements OnInit {
   public countriesList: Country[];
-  searchInput?: string;
+  public countriesListFiltered: Country[];
+  searchInput: string = '';
   regionFilter?: string;
   regionOptions = REGION_OPTIONS;
 
-  constructor(private getCountries: AllCountriesService) { }
+  constructor(private getCountries: AllCountriesService) {}
 
   ngOnInit() {
     this.getCountries.getCountries().subscribe((countries: Country[]) => {
       this.countriesList = countries;
+      this.countriesListFiltered = countries;
     });
   }
-  searchData() {
-    this.countriesList ? this.countriesList.filter((country) => {
-      if (this.searchInput) {
-        country.name.official.toLowerCase()
-          .includes(this.searchInput.toLocaleLowerCase())
-        console.log(this.searchInput);
+  filter(input: string) {
+    if (this.countriesList) {
+      if (input == 'All') {
+        this.countriesListFiltered = this.countriesList;
       } else {
-        country
-        console.log(country);
+        this.countriesListFiltered = this.countriesList.filter((country) => {
+          return country.region
+            .toLowerCase()
+            .includes(input.toLocaleLowerCase());
+        });
       }
-        }
-      )
-      .filter((country) =>
-        this.regionFilter?.toLocaleLowerCase()
-          ? country.region.includes(this.regionFilter.toLowerCase())
-          : country
-      )
-      : this.countriesList;
+    }
+  }
+  search(data: string) {
+    if (this.countriesList) {
+      if (data == 'All') {
+        this.countriesListFiltered = this.countriesList;
+      } else {
+        this.countriesListFiltered = this.countriesList.filter((country) => {
+          return country.name.common
+            .toLowerCase()
+            .includes(data.toLocaleLowerCase());
+        });
+      }
+    }
+  }
+  searchData() {
+    if (this.searchInput !== '') {
+      return this.countriesList.filter((country) => {
+        country.name.common
+          .toLowerCase()
+          .includes(this.searchInput.toLocaleLowerCase());
+        console.log(this.searchInput);
+      });
+    } else {
+      return this.countriesList;
+    }
   }
 }

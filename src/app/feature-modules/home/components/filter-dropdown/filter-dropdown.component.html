@@ -1,9 +1,14 @@
 <div class="dropdown shadow">
   <div class="dropdown-label" (click)="toggleOptions()">
-    <span>{{ placeholder }}</span>
+    <span>{{ selected }}</span>
     <span class="fa fa-chevron-down"></span>
   </div>
   <ul *ngIf="showOptions" class="dropdown-options shadow">
-    <li *ngFor="let region of regions" (click)="select(region); toggleOptions()">{{ region }}</li>
+    <li
+      *ngFor="let region of regions"
+      (click)="select(region); toggleOptions()"
+    >
+      {{ region }}
+    </li>
   </ul>
 </div>

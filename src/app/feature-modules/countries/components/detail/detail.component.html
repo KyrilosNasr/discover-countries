@@ -12,11 +12,11 @@
         <div class="country-section">
           <p *ngIf="country.name.nativeName | keyvalue">
             <strong>Native Name:</strong>
-            {{ country.name.nativeName.name }}
-            </p>
+            {{ country.name.common }}
+          </p>
           <p>
             <strong>Population:</strong>
-            {{ country.population | number: '1.0' }}
+            {{ country.population | number: "1.0" }}
           </p>
           <p>
             <strong>Region:</strong>
@@ -43,13 +43,16 @@
           </p>
           <p *ngFor="let language of country.languages | keyvalue">
             <strong>Language:</strong>
-            {{ language.value }} - {{language.key}}
+            {{ language.value }} - {{ language.key }}
           </p>
         </div>
       </div>
       <div class="border-countries">
         <p><strong>Border Countries:</strong></p>
-        <div *ngIf="borderCountries$ | async; let border" class="border-countries-buttons">
+        <div
+          *ngIf="borderCountries$ | async; let border"
+          class="border-countries-buttons"
+        >
           <div *ngFor="let borderCountry of border" class="button shadow">
             <div>
               {{ borderCountry.borders }}

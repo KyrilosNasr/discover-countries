@@ -3,34 +3,25 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 @Component({
   selector: 'app-filter-dropdown',
   templateUrl: './filter-dropdown.component.html',
-  styleUrls: ['./filter-dropdown.component.scss']
+  styleUrls: ['./filter-dropdown.component.scss'],
 })
 export class FilterDropdownComponent {
+  selected: string = 'All';
+
   showOptions = false;
 
   @Input()
-  placeholder: string;
-
-  @Input()
-  regions: string[]  // btwasal tmam
-
-  @Input()
-  region: string | any;
+  regions: string[]; // btwasal tmam
 
   @Output()
-  valueChange: EventEmitter<string> = new EventEmitter();
+  valueChanged: EventEmitter<string> = new EventEmitter();
 
   public select(region: string): void {
-    this.valueChange.emit(region);
-    console.log(this.valueChange.emit(region));
-    console.log(this.region);
-    console.log(this.valueChange);
-    console.log(this.regions);
-
+    this.selected = region;
+    this.valueChanged.emit(region);
   }
 
   public toggleOptions(): void {
     this.showOptions = !this.showOptions;
   }
-
 }
