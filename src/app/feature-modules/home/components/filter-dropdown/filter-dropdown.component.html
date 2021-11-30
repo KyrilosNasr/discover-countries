@@ -4,6 +4,6 @@
     <span class="fa fa-chevron-down"></span>
   </div>
   <ul *ngIf="showOptions" class="dropdown-options shadow">
-    <li *ngFor="let value of values" (click)="select(value)">{{ value }}</li>
+    <li *ngFor="let region of regions" (click)="select(region); toggleOptions()">{{ region }}</li>
   </ul>
 </div>

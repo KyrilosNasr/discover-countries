@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { UniversalValidators } from 'ngx-validators';
 import { Country } from 'src/app/feature-modules/countries/models/country';
 import { AllCountriesService } from '../../services/all-countries.service';
 
@@ -12,50 +10,35 @@ const REGION_OPTIONS = ['Africa', 'Americas', 'Asia', 'Europe', 'Oceania'];
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  public searchInput: FormGroup;
-  public searchFilter?: string;
-  public regionFilter?: string;
-  public regionOptions = REGION_OPTIONS;
-  public countries: Country[];
+  public countriesList: Country[];
+  searchInput?: string;
+  regionFilter?: string;
+  regionOptions = REGION_OPTIONS;
 
   constructor(private getCountries: AllCountriesService) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.getCountries.getCountries().subscribe((countries: Country[]) => {
-      if (countries) {
-        this.countries = countries;
-        console.log(countries);
-
-      }
+      this.countriesList = countries;
     });
-    this._searchValidation();
   }
-  private get _searchData() {
-    return this.searchInput.get('countryName') as FormControl;
-  }
-  private _searchValidation() {
-    return this.searchInput = new FormGroup({
-      searchFilter: new FormControl(
-        '',
-        {
-          validators: [
-            Validators.required,
-            UniversalValidators.noEmptyString
-          ]
+  searchData() {
+    this.countriesList ? this.countriesList.filter((country) => {
+      if (this.searchInput) {
+        country.name.official.toLowerCase()
+          .includes(this.searchInput.toLocaleLowerCase())
+        console.log(this.searchInput);
+      } else {
+        country
+        console.log(country);
+      }
         }
       )
-    });
-  }
-
-  private _mapCountries(): | any {
-    if (this.searchInput.valid) {
-      return this.countries.filter((country) =>
-        this.searchFilter ? country.name.common.toLowerCase().includes(this.searchFilter.toLowerCase()) : country
-      ).filter((country) =>
-        this.regionFilter ? country.region.includes(this.regionFilter) : country
+      .filter((country) =>
+        this.regionFilter?.toLocaleLowerCase()
+          ? country.region.includes(this.regionFilter.toLowerCase())
+          : country
       )
-    } else {
-      return this.countries;
-    }
+      : this.countriesList;
   }
 }
